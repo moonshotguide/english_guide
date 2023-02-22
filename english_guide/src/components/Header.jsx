@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo_securitas.webp";
+import { IoMdSearch } from "react-icons/io";
+import Switcher from './Switcher';
 
-const Header = () => {
+const Header = ({ searchTerm, setSearchTerm }) => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
 
   function handleClick() {
@@ -16,6 +19,8 @@ const Header = () => {
     }
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
@@ -23,7 +28,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+      <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <div className="flex items-center">
             <img
@@ -31,21 +36,28 @@ const Header = () => {
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
               English Guide TTCTA
             </span>
           </div>
-          <div className="flex items-center lg:order-2">
-            {/* <a href="#" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-              Log in
-            </a>
-            <a href="#" className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-              Get started
-            </a> */}
+          <div className="flex items-center lg:order-2 lg:w-80">
+            <div className="flex justify-start items-center w-full mr-2 px-2 rounded-md bg-l_gold_primary dark:bg-gh-bg-primary border-none outline-none focus-within:shadow-sm">
+              <IoMdSearch fontSize={25} className="ml-1" />
+              <input
+                type="text"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
+                placeholder="Search"
+                onFocus={() => navigate('/search')}
+                className='p-2 w-full bg-l_gold_primary dark:bg-gh-bg-primary outline-none'
+              />
+            </div>
+            {/* Toggle dark/light button */}
+            <Switcher />
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               onClick={handleClick}
@@ -87,7 +99,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                    className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
                     aria-current="page"
                   >
                     Home
@@ -96,7 +108,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Maintanance
                   </a>
@@ -104,7 +116,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Robbery
                   </a>
@@ -112,7 +124,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Features
                   </a>
