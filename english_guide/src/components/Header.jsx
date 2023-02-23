@@ -5,7 +5,7 @@ import { IoMdSearch } from "react-icons/io";
 import Switcher from './Switcher';
 
 const Header = ({ searchTerm, setSearchTerm }) => {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [toggleSidebar, setToggleSidebar] = useState(true);
 
   function handleClick() {
     setToggleSidebar((prevState) => !prevState);
@@ -28,8 +28,8 @@ const Header = ({ searchTerm, setSearchTerm }) => {
 
   return (
     <header>
-      <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-800">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+      <nav className="border-gray-200 px-6 lg:px-8 py-2.5 bg-gray-800">
+        <div className="flex flex-wrap justify-between items-center mx-auto">
           <div className="flex items-center">
             <img
               src={document.documentElement.classList === "dark" ? logo : logo}
@@ -40,7 +40,7 @@ const Header = ({ searchTerm, setSearchTerm }) => {
               English Guide TTCTA
             </span>
           </div>
-          <div className="flex items-center lg:order-2 lg:w-80">
+          <div className="flex items-center lg:order-2 lg:w-96">
             <div className="flex justify-start items-center w-full mr-2 px-2 rounded-md bg-l_gold_primary dark:bg-gh-bg-primary border-none outline-none focus-within:shadow-sm">
               <IoMdSearch fontSize={25} className="ml-1" />
               <input
@@ -92,42 +92,37 @@ const Header = ({ searchTerm, setSearchTerm }) => {
           {/* Toggle Button SideBar Elements */}
           {toggleSidebar && (
             <div
-              className="justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+              className="justify-between items-center w-full space-between lg:flex lg:w-auto lg:order-1"
               id="mobile-menu-2"
             >
-              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+              <ul className="flex flex-col justify-between w-[33rem] maxdesktop:w-full mt-4 font-medium lg:flex-row space-x-6 lg:mt-0">
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
-                    aria-current="page"
+                <Link to="/"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                  <Link to="/maintenance"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
-                    Maintanance
-                  </a>
+                    Maintenance
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                <Link to="/robbery"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Robbery
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                <Link to="/features"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
                   >
                     Features
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
