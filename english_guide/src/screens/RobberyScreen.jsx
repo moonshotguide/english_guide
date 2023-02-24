@@ -3,7 +3,7 @@ import React from 'react';
 const RobberyScreen = () => {
   return (
     <div>
-      Robbery
+      <h1>Content</h1>
     </div>
   );
 }

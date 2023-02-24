@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo_securitas.webp";
 import { IoMdSearch } from "react-icons/io";
 import Switcher from './Switcher';
+import DropdownMenu from "./DropdownMenu";
 
 const Header = ({ searchTerm, setSearchTerm }) => {
   const [toggleSidebar, setToggleSidebar] = useState(true);
@@ -28,7 +29,7 @@ const Header = ({ searchTerm, setSearchTerm }) => {
 
   return (
     <header>
-      <nav className="border-gray-200 px-6 lg:px-8 py-2.5 bg-gray-800">
+      <nav className="border-gray-200 px-6 lg:px-8 py-2.5 bg-l_gold_default dark:bg-gold-bg-default">
         <div className="flex flex-wrap justify-between items-center mx-auto">
           <div className="flex items-center">
             <img
@@ -36,7 +37,7 @@ const Header = ({ searchTerm, setSearchTerm }) => {
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
+            <span className="self-center text-xl font-semibold whitespace-nowrap text-slate-900  dark:text-white">
               English Guide TTCTA
             </span>
           </div>
