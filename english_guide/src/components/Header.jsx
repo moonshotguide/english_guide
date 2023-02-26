@@ -41,7 +41,9 @@ const Header = ({ searchTerm, setSearchTerm }) => {
               English Guide TTCTA
             </span>
           </div>
-          <div className="flex items-center lg:order-2 lg:w-96">
+          <div className="flex items-center lg:order-2 lg:w-96 gap-x-1">
+            <DropdownMenu />
+            {/* input search */}
             <div className="flex justify-start items-center w-full mr-2 px-2 rounded-md bg-l_gold_primary dark:bg-gh-bg-primary border-none outline-none focus-within:shadow-sm">
               <IoMdSearch fontSize={25} className="ml-1" />
               <input
@@ -90,37 +92,37 @@ const Header = ({ searchTerm, setSearchTerm }) => {
               </svg>
             </button>
           </div>
-          {/* Toggle Button SideBar Elements */}
+          {/* Toggle Hambuerger Button SideBar Elements */}
           {toggleSidebar && (
             <div
               className="justify-between items-center w-full space-between lg:flex lg:w-auto lg:order-1"
               id="mobile-menu-2"
             >
-              <ul className="flex flex-col justify-between w-[33rem] maxdesktop:w-full mt-4 font-medium lg:flex-row space-x-6 lg:mt-0">
+              <ul className="flex flex-col justify-between w-[33rem] maxdesktop:w-full mt-4 mt-4 font-medium lg:flex-row lg:space-x-6 lg:mt-0">
                 <li>
                 <Link to="/"
-                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link to="/maintenance"
-                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
                     Maintenance
                   </Link>
                 </li>
                 <li>
                 <Link to="/robbery"
-                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
                     Robbery
                   </Link>
                 </li>
                 <li>
                 <Link to="/features"
-                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 text-gray-400 lg:hover:text-white hover:bg-gray-700 hover:text-white border-gray-700"
+                  className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
                     Features
                   </Link>

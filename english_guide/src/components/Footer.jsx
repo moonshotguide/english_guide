@@ -4,7 +4,7 @@ import { IoArrowBack } from 'react-icons/io5'
 
 const Header = () => {
     return (
-        <footer class="p-4 bg-l_gold_default dark:bg-gold-bg-default shadow md:flex md:items-center md:justify-between md:p-6">
+        <footer className= "p-4 bg-l_gold_default dark:bg-gold-bg-default shadow md:flex md:items-center md:justify-between md:p-6">
             {/* Return Back Button */}
             <button className="w-36 
                         h-10 
