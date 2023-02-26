@@ -1,10 +1,10 @@
 import React from "react";
 
-const languages = []
+const languages = ["english", "español"];
 
 
 const LanguageContext = React.createContext({
-  language: ["english", "español"],
+  language: "english",
   changeLanguage: () => {},
 });
 
