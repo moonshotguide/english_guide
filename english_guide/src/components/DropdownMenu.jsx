@@ -1,30 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logosp from "../assets/images/sp-img.jpg";
 import logoen from "../assets/images/us-img.jpg";
-import LanguageContext from "../contexts/LanguageContext";
 
-const DropdownMenu = () => {
+const DropdownMenu = (props) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const { language, setLanguage } = useContext(LanguageContext);
-  // const [language, setLanguage] = useState("english");
+  const [language, setLanguage] = useState("english");
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
-  const changeLanguage = (newLanguage) => {
-    if (newLanguage !== language) {
-      setLanguage(newLanguage);
-    }
-  };
+  const changeLanguage = (language) => {
+    props.onLanguageChange(language);
+    setLanguage(language);
+    console.log(language)
+  }
 
   const menuClassName = isOpen ? "flex " : "hidden";
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   navigate("/");
+  // };
 
   return (
     <div className="relative text-gray-700 dark:text-gray-300">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FeaturesScreen = () => {
+const MailsScreen = () => {
   return (
     <div>
       Features
@@ -8,4 +8,4 @@ const FeaturesScreen = () => {
   );
 }
 
-export default FeaturesScreen;
+export default MailsScreen;

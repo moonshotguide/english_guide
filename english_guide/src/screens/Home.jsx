@@ -5,21 +5,23 @@ import { Route, Routes } from "react-router-dom";
 import HomeSection from "./HomeSection";
 import MaintenanceScreen from "./MaintenanceScreen";
 import RobberyScreen from "./RobberyScreen";
-import FeaturesScreen from "./FeaturesScreen";
+import MailsScreen from "./MailsScreen";
 
 const HomeScreen = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header />
       {/* Body */}
-      <Routes>
-        <Route path="/*" element={<HomeSection />} />
-        <Route path="/maintenance" element={<MaintenanceScreen />} />
-        <Route path="/robbery" element={<RobberyScreen />} />
-        <Route path="/features" element={<FeaturesScreen />} />
-      </Routes>
-      <Footer />
-    </>
+      <div className="pt-16 pb-16">
+        <Routes>
+          <Route path="/*" element={<HomeSection />} />
+          <Route path="/maintenance" element={<MaintenanceScreen />} />
+          <Route path="/robbery" element={<RobberyScreen />} />
+          <Route path="/mails" element={<MailsScreen />} />
+        </Routes>
+        <Footer />
+      </div>
+    </div>
   );
 };
 

@@ -5,11 +5,17 @@ import { IoMdSearch } from "react-icons/io";
 import Switcher from './Switcher';
 import DropdownMenu from "./DropdownMenu";
 
-const Header = ({ searchTerm, setSearchTerm }) => {
+const Header = (props) => {
+  const { searchTerm, setSearchTerm } = props;
   const [toggleSidebar, setToggleSidebar] = useState(true);
-
+  const [language, setLanguage] = useState("english");
+  
   function handleClick() {
     setToggleSidebar((prevState) => !prevState);
+  }
+
+  function handleLanguageChange(newLanguage) {
+    setLanguage(newLanguage);
   }
 
   const handleWindowResize = () => {
@@ -38,11 +44,11 @@ const Header = ({ searchTerm, setSearchTerm }) => {
               alt="Flowbite Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap text-slate-900  dark:text-white">
-              English Guide TTCTA
+            {language === 'english' ? 'TTCTA English Team Guide' : 'Guía equipo TTCTA Ingles'} 
             </span>
           </div>
-          <div className="flex items-center lg:order-2 lg:w-96 gap-x-1">
-            <DropdownMenu />
+          <div className="flex items-center lg:order-2 lg:w-96 w-full space-x-1 space-y-2 ">
+            <DropdownMenu onLanguageChange={handleLanguageChange}/>
             {/* input search */}
             <div className="flex justify-start items-center w-full mr-2 px-2 rounded-md bg-l_gold_primary dark:bg-gh-bg-primary border-none outline-none focus-within:shadow-sm">
               <IoMdSearch fontSize={25} className="ml-1" />
@@ -50,7 +56,7 @@ const Header = ({ searchTerm, setSearchTerm }) => {
                 type="text"
                 onChange={(e) => setSearchTerm(e.target.value)}
                 value={searchTerm}
-                placeholder="Search"
+                placeholder={language === 'english' ? 'Search' : 'Buscar'} 
                 onFocus={() => navigate('/search')}
                 className='p-2 w-full bg-l_gold_primary dark:bg-gh-bg-primary outline-none'
               />
@@ -103,28 +109,28 @@ const Header = ({ searchTerm, setSearchTerm }) => {
                 <Link to="/"
                   className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
-                    Home
+                    {language === 'english' ? 'Home' : 'Inicio'}
                   </Link>
                 </li>
                 <li>
                   <Link to="/maintenance"
                   className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
-                    Maintenance
+                    {language === 'english' ? 'Maintenances' : 'Mantenimientos'}
                   </Link>
                 </li>
                 <li>
                 <Link to="/robbery"
                   className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
-                    Robbery
+                    {language === 'english' ? 'Robbery' : 'Robos'}
                   </Link>
                 </li>
                 <li>
-                <Link to="/features"
+                <Link to="/mails"
                   className="block py-2 pr-4 pl-3 border-b lg:hover:bg-transparent lg:border-0 lg:p-0 hover:font-bold text-gray-700 dark:text-gray-300 hover:text-black  dark:hover:text-white border-gray-700"
                   >
-                    Features
+                    {language === 'english' ? 'Mails' : 'Emails'}
                   </Link>
                 </li>
               </ul>
