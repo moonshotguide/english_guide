@@ -42,7 +42,7 @@ const Header = (props) => {
               alt="Flowbite Logo"
             />
             <div className="flex flex-col">
-              <span className="text-sm font-light text-slate-400">TIGER TEAM</span>
+              <span className="text-sm font-light text-slate-400">CTA</span>
               <span className="self-center text-xl font-normal whitespace-nowrap ">
                 {language === "english" ? "English Guide" : "Guía Inglés"}
               </span>
