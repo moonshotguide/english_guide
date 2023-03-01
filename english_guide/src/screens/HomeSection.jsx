@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LanguageContext } from '../components/context/LanguageContext';
 
 const HomeSection = () => {
+  const { language } = useContext(LanguageContext)
   return (
-    <div className='h-full w-full bg-white dark:bg-gh-bg-default text-slate-900 dark:text-white dark:bg-gh-bg-primary'>
-      Home
-    </div>
+    <div>
+    {language === "english" ? "Home" : "Inicio"}
+  </div>
   );
 }
 
