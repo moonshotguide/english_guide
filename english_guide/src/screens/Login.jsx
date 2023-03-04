@@ -14,10 +14,6 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleAlertClose = () => {
-    setShowAlert(false);
-  };
-
   const handleLogin = () => {
     // Verificar las credenciales
     if (username === "TIRIRI" && password === "rocilito") {
@@ -32,8 +28,13 @@ const Login = () => {
       // Redirigir al usuario a la página principal
       navigate("/");
     } else {
+      localStorage.clear();
       setShowAlert(true);
     }
+  };
+
+  const closeAlert = () => {
+    setShowAlert(false);
   };
 
   const handleCheckboxChange = (e) => {
@@ -54,7 +55,9 @@ const Login = () => {
 
   return (
     <main className="dark:bg-slate-900 bg-gray-50 text-slate-900 dark:text-white h-screen flex flex-col justify-center">
-      <Alert showAlert={showAlert} onClose={handleAlertClose}/>
+       {showAlert && (
+        <Alert showAlert={showAlert} onClose={closeAlert}/>
+       )}
       <div className="flex flex-wrap justify-center ">
         <div className="px-6 mx-auto flex-0">
           {/* Card with Shadow */}
