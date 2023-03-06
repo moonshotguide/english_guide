@@ -14,7 +14,8 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); // Evitar comportamiento predeterminado del formulario
     // Verificar las credenciales
     if (username === "TIRIRI" && password === "rocilito") {
       // Almacenar las credenciales en localStorage si se ha seleccionado "Recordar usuario y contraseña"
