@@ -56,9 +56,7 @@ const Login = () => {
 
   return (
     <main className="dark:bg-slate-900 bg-gray-50 text-slate-900 dark:text-white h-screen flex flex-col justify-center">
-       {showAlert && (
-        <Alert showAlert={showAlert} onClose={closeAlert}/>
-       )}
+      {showAlert && <Alert showAlert={showAlert} onClose={closeAlert} />}
       <div className="flex flex-wrap justify-center ">
         <div className="px-6 mx-auto flex-0">
           {/* Card with Shadow */}
@@ -66,15 +64,15 @@ const Login = () => {
             {/* White Shadow */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg"></div>
             {/* Login Card */}
-            <div className="relative z-0 flex flex-col justify-between w-[23rem] h-[30rem] min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border  dark:bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur px-6 py-3.5">
+            <div className="relative z-0 flex flex-col justify-between w-[23rem] h-[30rem] min-w-0 break-words card ">
               <Switcher />
               <div className="text-center border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6    ">
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:bg-gradient-to-r bg-black dark:from-indigo-200 dark:via-sky-400 dark:to-indigo-200 bg-clip-text font-display tracking-tight text-transparent">
+                <span className="self-center text-3xl font-semibold whitespace-nowrap dark:bg-gradient-to-r bg-black dark:from-indigo-200 dark:via-sky-400 dark:to-indigo-200 bg-clip-text font-display tracking-tight text-transparent">
                   {language === "english" ? "English Guide" : "Guía Inglés"}
                 </span>
               </div>
               <div className="p-8 pt-0 pb-6 text-center">
-                <div className="mb-6 text-center text-slate-500">
+                <div className="text-center text-slate-500 mb-1">
                   <small>
                     {language === "english"
                       ? "Log in with credentials"
@@ -87,7 +85,7 @@ const Login = () => {
                     {/* username input */}
                     <input
                       type="text"
-                      className="text-sm focus:shadow-primary-outline dark:bg-slate-850 placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
+                      className="text-sm focus:shadow-primary-outline placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
                       placeholder={
                         language === "english"
                           ? "Username"
@@ -101,7 +99,7 @@ const Login = () => {
                     {/* password input */}
                     <input
                       type="password"
-                      className="text-sm focus:shadow-primary-outline dark:bg-slate-850 placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
+                      className="text-sm focus:shadow-primary-outline placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
                       placeholder={
                         language === "english" ? "Password" : "Contraseña"
                       }
@@ -127,7 +125,7 @@ const Login = () => {
                   <div className="text-center">
                     <button
                       type="submit"
-                      className="inline-block w-full px-5 py-2.5 mt-6 mb-2 text-sm font-bold text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer active:-translate-y-px active:hover:text-white active:text-black hover:-translate-y-px hover:shadow-xs leading-normal tracking-tight-rem bg-150 bg-x-25 hover:text-white  bg-gradient-to-tl from-slate-800 to-slate-600 hover:border-slate-400 hover:bg-slate-600"
+                      className="inline-block w-full px-5 py-2.5 mt-6 text-sm font-bold text-center text-white align-middle transition-all ease-in border-0 rounded-lg shadow-md cursor-pointer active:-translate-y-px active:hover:text-white active:text-black hover:-translate-y-px hover:shadow-xs leading-normal tracking-tight-rem bg-150 bg-x-25 hover:text-white  bg-gradient-to-tl from-slate-800 to-slate-600 hover:border-slate-400 hover:bg-slate-600"
                     >
                       {language === "english" ? "Log in" : "Inicia sesión"}
                     </button>
