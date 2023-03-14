@@ -55,7 +55,7 @@ const Login = () => {
   }, []);
 
   return (
-    <main className="dark:bg-zinc-900 bg-gray-50 text-slate-900 dark:text-white h-screen flex flex-col justify-center">
+    <main className="dark:bg-black bg-gray-50 text-slate-900 dark:text-white h-screen flex flex-col justify-center">
       {showAlert && <Alert showAlert={showAlert} onClose={closeAlert} />}
       <div className="flex flex-wrap justify-center ">
         <div className="px-6 mx-auto flex-0">
@@ -99,7 +99,7 @@ const Login = () => {
                     {/* password input */}
                     <input
                       type="password"
-                      className="text-sm focus:shadow-primary-outline placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-slate-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-slate-700/40 dark:hover:ring-slate-500"
+                      className="text-sm focus:shadow-primary-outline placeholder:text-gray-500 dark:placeholder:text-white/80 dark:text-white/80 leading-5.6 ease block w-full appearance-none rounded-lg bg-white bg-clip-padding py-2.5 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow     items-center justify-center ring-1 ring-zinc-200 hover:ring-zinc-300 dark:bg-zinc-800/75 dark:ring-inset dark:ring-white/5 dark:hover:bg-zinc-700/40 dark:hover:ring-zinc-500"
                       placeholder={
                         language === "english" ? "Password" : "Contraseña"
                       }

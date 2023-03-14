@@ -13,8 +13,8 @@ const pages = [
     title: { english: "BURGLARED", español: "ROBOS" },
     to: "/robbery",
     description: {
-      english: "Process, speeches, tickets, and maintenance.",
-      español: "Procesos, discursos, tickets y mantenimiento.",
+      english: "Process, speeches, tickets and maintenances.",
+      español: "Procesos, discursos, tickets y mantenimientos.",
     },
     ext: { english: "66111", español: "66065" },
     icon: burglared,
@@ -23,7 +23,7 @@ const pages = [
     title: { english: "CAMERAS", español: "CÁMARAS" },
     to: "/cameras",
     description: {
-      english: "Guides, tools, and maintenance.",
+      english: "Guides, tools and maintenances.",
       español: "Guías, herramientas y mantenimientos",
     },
     ext: { english: "66111", español: "66575" },
@@ -33,7 +33,7 @@ const pages = [
     title: { english: "MOONSHOT", español: "MOONSHOT" },
     to: "/moonshot",
     description: {
-      english: "Guides, tickets, and maintenance.",
+      english: "Guides, tickets and maintenances.",
       español: "Guías, tickets y mantenimientos",
     },
     ext: { english: "66111", español: "66596" },
@@ -43,7 +43,7 @@ const pages = [
     title: { english: "FAST", español: "FAST" },
     to: "/fast",
     description: {
-      english: "Guides, tickets, and maintenance.",
+      english: "Guides, tickets and maintenances.",
       español: "Guías, tickets y mantenimientos",
     },
     ext: { english: "66111", español: "66297" },
@@ -83,8 +83,8 @@ const pages = [
     title:{ english: "CLASSIC", español: "CLASSIC" },
     to: "/classic",
     description: {
-      english: "Guides, Configurations, and Maintenances.",
-      español: "Guías, Programaciones, and maintenances",
+      english: "Guides, configurations and Maintenances.",
+      español: "Guías, programaciones y mantenimientos",
     },
     ext: { english: "66111", español: "66256" },
     icon: classics,
