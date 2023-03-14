@@ -19,7 +19,7 @@ const HomeScreen = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       {/* Body */}
-      <div className="flex flex-grow items-center dark:bg-gradient-to-t from-slate-900 to-slate-900 text-slate-500 dark:text-white ">
+      <div className="flex flex-grow items-center dark:bg-gradient-to-t from-zinc-900 to-zinc-900 text-slate-500 dark:text-white ">
         <Routes>
           <Route path="/*" element={<HomeSection />} />
           <Route path="/maintenance" element={<MaintenanceScreen />} />

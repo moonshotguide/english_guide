@@ -36,10 +36,11 @@ const HomeSection = ({ textToCopy }) => {
             {/* White Shadow */}
             {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg"></div> */}
             <div className="card p-0 h-[20rem]">
+              {/* Image Logo */}
               <img
                 src={page.icon}
                 alt={page.title[language]}
-                className="rounded-t-lg w-60"
+                className="rounded-t-lg w-60 h-auto object-cover"
               />
               <div className="p-5 w-60 flex flex-col justify-between h-[11.5rem]">
                 <h5 className="mb-2 font-semibold text-base font-bold tracking-tight text-gray-900 dark:text-white">
@@ -70,7 +71,7 @@ const HomeSection = ({ textToCopy }) => {
                 </div>
                 {/* Copied Alert */}
                 {copied && (
-                  <span className="fixed bottom-[3.5rem] left-[5.5rem]   bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                  <span className="fixed bottom-[3.5rem] left-[5.5rem] bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                     {language === "english" ? "copied" : "copiado"}
                   </span>
                 )}

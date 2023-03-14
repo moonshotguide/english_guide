@@ -5,6 +5,8 @@ import {
   fast,
   billings,
   support,
+  classics,
+  technicians
 } from "../assets/images";
 const pages = [
   {
@@ -75,7 +77,7 @@ const pages = [
       español: "Técnicos de guardia",
     },
     ext: { english: "66114", español: "66114" },
-    icon: support,
+    icon: technicians,
   },
   {
     title:{ english: "CLASSIC", español: "CLASSIC" },
@@ -85,7 +87,7 @@ const pages = [
       español: "Guías, Programaciones, and maintenances",
     },
     ext: { english: "66111", español: "66256" },
-    icon: support,
+    icon: classics,
   },
 ];
 
