@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import { LanguageContext } from "../components/context/LanguageContext";
 import Switcher from "../components/Switcher";
@@ -10,7 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -19,13 +18,13 @@ const Login = () => {
     // Verificar las credenciales
     if (username === "TIRIRI" && password === "rocilito") {
       // Almacenar las credenciales en localStorage si se ha seleccionado "Recordar usuario y contraseña"
-      if (rememberMe) {
-        localStorage.setItem("TIRIRI", username);
-        localStorage.setItem("rocilito", password);
-        localStorage.setItem("rememberMe", true);
-      } else {
-        localStorage.clear();
-      }
+      // if (rememberMe) {
+      //   localStorage.setItem("TIRIRI", username);
+      //   localStorage.setItem("rocilito", password);
+      //   localStorage.setItem("rememberMe", true);
+      // } else {
+      //   localStorage.clear();
+      // }
       // Redirigir al usuario a la página principal
       navigate("/");
     } else {
@@ -33,6 +32,9 @@ const Login = () => {
       setShowAlert(true);
     }
   };
+
+  console.log(`Username: ${process.env.username}`);
+  console.log(`Password: ${process.env.password}`);
 
   const closeAlert = () => {
     setShowAlert(false);
@@ -61,7 +63,7 @@ const Login = () => {
         <div className="px-6 mx-auto flex-0">
           {/* Card with Shadow */}
           <div className="relative">
-            {/* White Shadow */}
+            {/* Blur Effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg"></div>
             {/* Login Card */}
             <div className="relative z-0 flex flex-col justify-between w-[23rem] h-[30rem] min-w-0 break-words card ">
@@ -80,7 +82,7 @@ const Login = () => {
                   </small>
                 </div>
                 {/* Login Form */}
-                <form role="form text-left" onSubmit={handleLogin}>
+                <form onSubmit={handleLogin}>
                   <div className="mb-4">
                     {/* username input */}
                     <input

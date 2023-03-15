@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import HomeScreen from "./screens/Home";
 import HomeSection from "./screens/HomeSection";
 import Login from "./screens/Login";
-
 import { LanguageProvider } from "./components/context/LanguageContext";
 import { useEffect } from "react";
 
