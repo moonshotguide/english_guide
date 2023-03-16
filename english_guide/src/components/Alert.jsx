@@ -6,8 +6,8 @@ const Alert = ({ showAlert, onClose }) => {
   return (
     <>
       {showAlert && (
-        <div className="fixed z-10 inset-0 bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg flex items-center justify-center">
-          <div className="mx-auto w-[22rem] flex items-center justify-center dark:bg-zinc-900 ring-1 ring-white/10 backdrop-blur flex flex-col alert fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-4 dark:shadow-dark-xl bg-gray-50 text-slate-900 dark:text-white text-red-800 rounded-lg">
+        <div className="fixed z-10 inset-0 bg-zinc-900 bg-opacity-50 backdrop-filter backdrop-blur-lg flex items-center justify-center">
+          <div className="mx-auto w-[22rem] flex items-center justify-center dark:bg-[#0c0c0c] ring-1 ring-white/10 backdrop-blur flex flex-col alert fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-lg rounded-lg p-4 dark:shadow-dark-xl bg-gray-50 text-slate-900 dark:text-white text-red-800 rounded-lg">
             <div className="flex items-center my-2">
               <svg
                 aria-hidden="true"

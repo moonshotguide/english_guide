@@ -28,8 +28,22 @@ hr {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
   .dark .card {
-    /* background-color: #0a101fcc; */
-    background-color: #111;
+    background-color: #060606;
+  }
+  .login_card{
+    background-color: theme('colors.white');
+    border-radius: 1rem;
+    transition: all .3s ease;
+    background-color: #fafafa;
+    box-shadow: 0 5px 10px rgba(0,0,0,.12);
+    border: 1px solid #eaeaea;
+  }
+  .login_card:hover{
+    box-shadow: 0 8px 30px rgba(0,0,0,.12);
+  }
+  .dark .login_card{
+    background-color: #060606;
+    border: 1px solid #333;
   }
   .input{
     display: flex;
@@ -54,4 +68,19 @@ hr {
     border: 1px solid #4b5563;
     box-shadow: inset 0 0 0 1px #ffffff0d, 0 0 0 1px #a3bffa;
   }
+  .dropmenu{
+    width: max-content;
+    background: theme('colors.white');
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    transition: all,.3s ease;
+    box-shadow: 0 50px 100px -20px rgb(0 0 0 / 12%), 0 30px 60px -30px rgb(0 0 0 / 15%);
+    backdrop-filter: blur(45px)
+  }
+  .dark .dropmenu{
+    background: #00000099;
+    border: 1px solid #2e2e2e;
+  }
 }
+
