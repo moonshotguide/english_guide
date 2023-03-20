@@ -1,26 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { LanguageContext } from "./context/LanguageContext";
 
 const Header = () => {
   const { language } = useContext(LanguageContext);
-  const [gradientColors, setGradientColors] = useState(["#00dfd8", "#007cf0"]); // Definir los colores iniciales del gradiente
+  const containerRef = useRef(null);
+  const gradients = [
+    "linear-gradient(45deg, #00dfd8, #007cf0)",
+    "linear-gradient(45deg, #ff4d4d, #f9cb28)",
+    "linear-gradient(45deg, #ff0080, #7928ca)"
+  ];
+  const [gradientIndex, setGradientIndex] = useState(0);
 
   useEffect(() => {
-    // Cambiar los colores del gradiente cada 5 segundos
     const interval = setInterval(() => {
-      setGradientColors(getRandomColors());
-    }, 3800);
+      setGradientIndex((prevIndex) => (prevIndex + 1) % gradients.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
-
-  const getRandomColors = () => {
-    // Generar dos colores aleatorios para el gradiente
-    const color1 = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    const color2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    return [color1, color2];
-  };
+  }, [gradients]);
 
   return (
     <footer className="py-3.5 px-5 md:flex md:items-center md:justify-between dark:bg-black">
@@ -34,9 +32,7 @@ const Header = () => {
       </button>
       <div
         className="search-container"
-        style={{
-          background: `linear-gradient(45deg, ${gradientColors[0]}, ${gradientColors[1]})`,
-        }}
+        style={{ background: gradients[gradientIndex] }}
       >
         <Link
           to="/"
