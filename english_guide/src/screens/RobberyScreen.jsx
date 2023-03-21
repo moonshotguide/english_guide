@@ -8,46 +8,53 @@ const RobberyScreen = () => {
   return (
     <>
       {/* fixed left banner */}
-      <div className="flex flex-col items-stretch w-[250px]">
+      <div className="flex flex-col items-stretch w-[260px] h-[300px]">
+        <h4>
+          {language === "english"
+            ? "Burglary maintenances"
+            : "Mantenimientos por robos"}
+        </h4>
         {/* Buttons */}
-        <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
-          <MdArrowForwardIos />
-          <div className="w-full flex flex-row justify-start">
-            <h4 className="ml-3 mr-0 my-3">
-              {language === "english"
-                ? "WITH SIGNALS, NO DAMAGE"
-                : "CON SEÑALES, SIN DAÑOS"}
-            </h4>
+        <div className="inner_card rounded-md dark:bg-black p-0">
+          <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
+            <MdArrowForwardIos />
+            <div className="w-full flex flex-row justify-start">
+              <h4 className="ml-3 mr-0 my-3">
+                {language === "english"
+                  ? "WITH SIGNALS, NO DAMAGE"
+                  : "CON SEÑALES, SIN DAÑOS"}
+              </h4>
+            </div>
           </div>
-        </div>
-        <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
-          <MdArrowForwardIos />
-          <div className="w-full flex flex-row justify-start">
-            <h4 className="ml-3 mr-0 my-3">
-              {language === "english"
-                ? "WITH SIGNALS, DAMAGE"
-                : "CON SEÑALES, CON DAÑOS"}
-            </h4>
+          <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
+            <MdArrowForwardIos />
+            <div className="w-full flex flex-row justify-start">
+              <h4 className="ml-3 mr-0 my-3">
+                {language === "english"
+                  ? "WITH SIGNALS, DAMAGE"
+                  : "CON SEÑALES, CON DAÑOS"}
+              </h4>
+            </div>
           </div>
-        </div>
-        <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
-          <MdArrowForwardIos />
-          <div className="w-full flex flex-row justify-start">
-            <h4 className="ml-3 mr-0 my-3">
-              {language === "english"
-                ? "NO SIGNALS, DAMAGE"
-                : "SIN SEÑALES, CON DAÑOS"}
-            </h4>
+          <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
+            <MdArrowForwardIos />
+            <div className="w-full flex flex-row justify-start">
+              <h4 className="ml-3 mr-0 my-3">
+                {language === "english"
+                  ? "NO SIGNALS, DAMAGE"
+                  : "SIN SEÑALES, CON DAÑOS"}
+              </h4>
+            </div>
           </div>
-        </div>
-        <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
-          <MdArrowForwardIos />
-          <div className="w-full flex flex-row justify-start">
-            <h4 className="ml-3 mr-0 my-3">
-              {language === "english"
-                ? "NO SIGNALS, NO DAMAGE"
-                : "SIN SEÑALES, SIN DAÑOS"}
-            </h4>
+          <div className="w-full flex flex-row items-center cursor-pointer divide-y divide-[#00000030] dark:divide-[#333]">
+            <MdArrowForwardIos />
+            <div className="w-full flex flex-row justify-start">
+              <h4 className="ml-3 mr-0 my-3">
+                {language === "english"
+                  ? "NO SIGNALS, NO DAMAGE"
+                  : "SIN SEÑALES, SIN DAÑOS"}
+              </h4>
+            </div>
           </div>
         </div>
       </div>
