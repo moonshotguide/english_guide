@@ -17,13 +17,25 @@ hr {
 }
 
 @layer components {
+  /* inner card */
+  .inner_card{
+    background-color: theme("colors.white");
+    border: 1px solid transparent;
+    border-color: #00000030;
+    backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    box-shadow: 0 5px 10px #0000001f;
+  }
+  .dark .inner_card {
+    background-color: #111;
+  }
   /* card */
   .card {
     background-color: theme("colors.white");
     border: 1px solid transparent;
     border-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border-radius: 1rem;
+    border-radius: 1rem 1rem 1rem 1rem;
     -webkit-backdrop-filter: blur(20px);
     padding: 1.5rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
