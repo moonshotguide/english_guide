@@ -45,7 +45,7 @@ const Footer = () => {
   }, [gradients]);
 
   return (
-    <footer className="py-3.5 px-5 md:flex md:items-center md:justify-between dark:bg-black">
+    <footer className="font-titillium py-3.5 px-5 md:flex md:items-center md:justify-between dark:bg-black">
       {/* Home Button */}
       <div
         className="search-container"

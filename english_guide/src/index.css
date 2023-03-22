@@ -17,6 +17,9 @@ hr {
 }
 
 @layer components {
+  .hscreen {
+    height: calc(100vh - 80px - 70px);
+  }
   /* inner card */
   .inner_card{
     background-color: theme("colors.white");
