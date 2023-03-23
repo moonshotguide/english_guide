@@ -6,8 +6,8 @@ import { MdArrowForwardIos } from "react-icons/md";
 const RobberyScreen = () => {
   const { language } = useContext(LanguageContext);
   return (
-    <div className="w-full flex flex-row h-full">
-      {/* fixed left options banner */}
+    <div className="w-full flex flex-row h-full font-titillium">
+      {/* Left Side Options banner */}
       <div className="hscreen font-titillium">
         <div className="rounded-md dark:bg-black py-0 px-2 flex flex-col w-max h-full items-center text-black dark:text-white justify-center mr-3">
           <h4 className="my-6 font-bold">
@@ -66,7 +66,7 @@ const RobberyScreen = () => {
         {/* "What to say" card */}
         <div className="flex flex-col w-max">
           {/* top div */}
-          <div className="inner_card bg-[#f6f8fa] dark:border-[#333] py-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
+          <div className="inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
             {/* Title */}
             <span className="text-2xl 4xl:text-4xl font-extrabold text-black dark:text-white">
               {language === "english" ? "Robbery" : "Robos"}
@@ -77,7 +77,7 @@ const RobberyScreen = () => {
             </p>
           </div>
           {/* bottom div */}
-          <div className="inner_card dark:bg-black dark:border-[#333] py-2 rounded-b-lg flex flex-col justify-center items-center">
+          <div className="inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
             {/* title form wrapper */}
             <div className="w-full flex flex-row items-center justify-around mt-0 4xl:mt-2.5 ">
               <div className="flex flex-row items-center justify-center">
@@ -97,7 +97,7 @@ const RobberyScreen = () => {
             <div className="mt-2 flex flex-row items-center justify-between font-titillium text-[500] font-light text-neutral-600 dark:text-neutral-400">
               {/* What to say wrapper */}
               <div className="h-full flex flex-col items-center justify-center basis-1/2">
-                <ul className="dark:text-[#00b900] text-[#006000] flex flex-col gap-0 4xl:gap-1 justify-between items-center">
+                <ul className="dark:text-[#00b900] text-[#006000] flex flex-col gap-0 4xl:gap-1 justify-between items-center text-center">
                   <li>
                     {language === "english"
                       ? "Intrussion signals"
@@ -160,11 +160,6 @@ const RobberyScreen = () => {
                   </li>
                   <li>
                     {language === "english"
-                      ? "Power cuts"
-                      : "Cortes de corriente"}
-                  </li>
-                  <li>
-                    {language === "english"
                       ? "Comlogs that differ from what is stated in the theft report"
                       : "Comlogs que difieran con lo indicado en el informe de robo"}
                   </li>
@@ -177,11 +172,11 @@ const RobberyScreen = () => {
       {/* Maintenance Cards */}
       <div className="items-center flex flex-col h-full w-full">
         {/* top div */}
-        <div className="inner_card bg-[#f6f8fa] dark:border-[#333] py-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
+        <div className="inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
           {language === "english" ? "Open maintenances/ticket 500/" : "Abre el mantenimiento/aviso 500/"}
         </div>
         {/* bottom div */}
-        <div className="inner_card dark:bg-black dark:border-[#333] py-2 rounded-b-lg flex flex-col justify-center items-center">
+        <div className="inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
           
         </div>
       </div>
