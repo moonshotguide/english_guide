@@ -1,12 +1,26 @@
-import React, { useContext, useCallback, useRef } from "react";
+import React, { useContext, useCallback, useRef, useState } from "react";
 import { LanguageContext } from "../components/context/LanguageContext";
 import { BsCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
 import { MdArrowForwardIos } from "react-icons/md";
 import { TbCopy } from "react-icons/tb";
 import ReactCanvasConfetti from "react-canvas-confetti";
+import { maintenances } from "../constants/maintenances";
 
 const RobberyScreen = () => {
+  const [selectedMaintenance, setSelectedMaintenance] = useState(
+    maintenances[0].encoding.find((item) => item.subtype === "501")
+  );
+
+  const handleClick = (key) => {
+    setSelectedMaintenance(maintenances[0].encoding[key]);
+  };
+
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(selectedMaintenance.text);
+  };
+
   const { language } = useContext(LanguageContext);
+
   const canvasStyles = {
     position: "fixed",
     pointerEvents: "none",
@@ -16,6 +30,7 @@ const RobberyScreen = () => {
     left: 0,
     zIndex: -10,
   };
+
   const refAnimationInstance = useRef(null);
 
   const getInstance = useCallback((instance) => {
@@ -27,7 +42,7 @@ const RobberyScreen = () => {
       refAnimationInstance.current({
         ...opts,
         origin: { y: 0.8 },
-        particleCount: Math.floor(180 * particleRatio),
+        particleCount: Math.floor(280 * particleRatio),
       });
   }, []);
 
@@ -74,56 +89,87 @@ const RobberyScreen = () => {
               : "Mantenimientos por robos"}
           </h4>
           {/* Buttons */}
-          <div className="divide-y divide-[#00000030] dark:divide-[#333] text-sm font-light tracking-wider">
-            <div className="hover:bg-[#8181812e] hover:transform hover:scale-106 w-full flex flex-row items-center cursor-pointer border-t border-[#00000030] dark:border-[#333]">
-              <MdArrowForwardIos />
-              <div className="w-full flex flex-row justify-start">
-                <h4 className="ml-3 mr-1 my-4">
-                  {language === "english"
-                    ? "With signals, No Damage"
-                    : "Con Señales, Sin Daños"}
-                </h4>
-              </div>
-            </div>
-            <div className="hover:bg-[#8181812e] hover:transform hover:scale-106 w-full flex flex-row items-center cursor-pointer">
-              <MdArrowForwardIos />
-              <div className="w-full flex flex-row justify-start">
-                <h4 className="ml-3 mr-1 my-4">
-                  {language === "english"
-                    ? "With signals, Damage"
-                    : "Con Señales, Con Daños"}
-                </h4>
-              </div>
-            </div>
-            <div className="hover:bg-[#8181812e] hover:transform hover:scale-106 w-full flex flex-row items-center cursor-pointer">
-              <MdArrowForwardIos />
-              <div className="w-full flex flex-row justify-start">
-                <h4 className="ml-3 mr-1 my-4">
-                  {language === "english"
-                    ? "No Signals, Damage"
-                    : "Sin Señales, Con Daños"}
-                </h4>
-              </div>
-            </div>
-            <div className="hover:bg-[#8181812e] hover:transform hover:scale-106 w-full flex flex-row items-center cursor-pointer border-b border-[#00000030] dark:border-[#333]">
-              <MdArrowForwardIos />
-              <div className="w-full flex flex-row justify-start">
-                <h4 className="ml-3 mr-1 my-4">
-                  {language === "english"
-                    ? "No Signals, No Damage"
-                    : "Sin Señales, Sin Daños"}
-                </h4>
-              </div>
-            </div>
+          <div className="divide-y divide-[#00000030] dark:divide-[#333] text-sm 4xl:text-base font-light tracking-wider ">
+            {maintenances[0].encoding.map((item, index) => (
+              <button
+                key={index}
+                className="w-[220px] dark:active:text-[#00d0ff] active:text-[#0072d3] active:font-bold hover:bg-[#8181812e] hover:transform hover:scale-106 w-[210px] flex flex-row items-center cursor-pointer border-t border-[#00000030] dark:border-[#333]"
+                onClick={() => handleClick(index)}
+              >
+                <MdArrowForwardIos />
+                <div className="w-full flex flex-row justify-start">
+                  <h4 className="ml-3 mr-1 my-4">{item.reason}</h4>
+                </div>
+              </button>
+            ))}
           </div>
         </div>
       </div>
       {/* Right Side */}
       <div className="flex 4xl:flex-row flex-col ml-2.5 w-full ">
+        {/* Maintenance Cards */}
+        <div className="items-center flex flex-col h-full w-full justify-center">
+          <div className="h-max flex flex-col w-max">
+            <div className="items-center flex flex-col h-full w-full justify-center">
+              {/* top div */}
+              <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem]">
+                {/* Title */}
+                <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
+                  {language === "english" ? "Maintenances" : "Mantenimientos"}
+                </span>
+                {/* Subtitle */}
+                <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
+                  {language === "english"
+                    ? "Kindly ensure that all relevant information is obtained from the customer"
+                    : "Asegúrate de obtener todos la información del cliente :"}
+                </p>
+              </div>
+              {/* bottom div */}
+              <div className="h-[280px] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-between items-center w-[36rem]">
+                {/* Subtitle */}
+                <div className="justify-between flex flex-row m-2 px-3 w-full items-center">
+                  {language === "english"
+                    ? "Open maintenances or ticket"
+                    : "Abre el mantenimiento o aviso"}
+                  <div className="flex flex-row">
+                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-l-md p-0.5 px-1">
+                      {language === "english" ? "Type: " : "Tipo: "}
+                    </div>
+
+                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-none p-0.5 px-1">
+                      {selectedMaintenance && selectedMaintenance.type}
+                    </div>
+                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] rounded-r-md p-0.5 px-1">
+                      {selectedMaintenance && selectedMaintenance.subtype}
+                    </div>
+                  </div>
+                </div>
+                <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] m-2 p-3 border-dashed border border-[#30363d] rounded-md">
+                  {selectedMaintenance && selectedMaintenance.text}
+                </p>
+                {/* Button */}
+                <div>
+                  <ReactCanvasConfetti
+                    refConfetti={getInstance}
+                    style={canvasStyles}
+                  />
+                  <button
+                    onClick={fire}
+                    id="copyBtn"
+                    className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-[#ffffff73] bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all"
+                  >
+                    <TbCopy className="text-lg" />
+                    {language === "english" ? "Copy" : "Copiar"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Robbery Advices */}
         <div className="items-center flex flex-col h-full w-full justify-center">
           {/* "What to say" card */}
-          <div className="h-[330px] flex flex-col w-max">
+          <div className="h-max flex flex-col w-max">
             {/* top div */}
             <div className="w-[36rem] inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
               {/* Title */}
@@ -138,7 +184,7 @@ const RobberyScreen = () => {
               </p>
             </div>
             {/* bottom div */}
-            <div className="w-[36rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
+            <div className="h-[280px] w-[36rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
               {/* title form wrapper */}
               <div className="w-full flex flex-row items-center justify-around mt-0 4xl:mt-2.5 ">
                 <div className="flex flex-row items-center justify-center">
@@ -226,67 +272,6 @@ const RobberyScreen = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Maintenance Cards */}
-        <div className="h-[330px] flex flex-col w-max">
-          <div className="items-center flex flex-col h-full w-full justify-center">
-            {/* top div */}
-            <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem]">
-              {/* Title */}
-              <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
-                {language === "english" ? "Maintenances" : "Mantenimientos"}
-              </span>
-              {/* Subtitle */}
-              <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
-                {language === "english"
-                  ? "Before to start:"
-                  : "Antes de empezar:"}
-              </p>
-            </div>
-            {/* bottom div */}
-            <div className=" inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center w-[36rem]">
-              {/* Subtitle */}
-              <div className="justify-between flex flex-row my-2 w-full items-center">
-                {language === "english"
-                  ? "Open maintenances or ticket"
-                  : "Abre el mantenimiento o aviso"}
-                <div className="flex flex-row">
-                  <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-l-md p-0.5 px-1">
-                    {language === "english" ? "Type: " : "Tipo: "}
-                  </div>
-                  <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-none p-0.5 px-1">
-                    500
-                  </div>
-                  <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] rounded-r-md p-0.5 px-1">
-                    501
-                  </div>
-                </div>
-              </div>
-              {/* Text */}
-              <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] my-3">
-                ROBO CON SEÑALES Y SIN DAÑOS. NO ES NECESARIO VIEW, POR FAVOR,
-                DESCARGAR CÓDIGOS <span>(ESPEFICICAR CODIGOS)</span> DEL
-                FOTODETECTOR <span>(INDICAR Nº DE ZONA)</span> Y SI NO LLEGAN
-                IMAGENES RETIRAR FOTODETECTOR <span>(ESPEFICICAR ZONA)</span> Y
-                ENVIAR A LA CENTRAL PARA EXTRAER IMAGENES. GRACIAS
-              </p>
-              {/* Button */}
-              <div>
-                <ReactCanvasConfetti
-                  refConfetti={getInstance}
-                  style={canvasStyles}
-                />
-                <button
-                  onClick={fire}
-                  id="copyBtn"
-                  className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-[#ffffff73] bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all"
-                >
-                  <TbCopy className="text-lg" />
-                  {language === "english" ? "Copy" : "Copiar"}
-                </button>
               </div>
             </div>
           </div>
