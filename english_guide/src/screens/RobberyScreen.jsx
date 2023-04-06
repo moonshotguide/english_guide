@@ -15,12 +15,14 @@ const RobberyScreen = () => {
     setSelectedMaintenance(maintenances[0].encoding[key]);
   };
 
+  // Text Copy Button
   const handleCopyClick = () => {
     navigator.clipboard.writeText(selectedMaintenance.text);
   };
 
   const { language } = useContext(LanguageContext);
 
+  // Fire Function
   const canvasStyles = {
     position: "fixed",
     pointerEvents: "none",
@@ -78,6 +80,28 @@ const RobberyScreen = () => {
     });
   }, [makeShot]);
 
+  // Slider Function
+  const questions = [
+    "1.- Are you OK? Have you suffered any harm?",
+    "2.- Should we inform the authorities about the intrusion or you already informed them about it?",
+    "3.- Did the forensic police has already been there? Do they plan to go?",
+    "4.- Around what time do you think the intrussion took place?",
+    "5.- Did they break a window or door? Did they Get in through the roof?",
+    "6.- Is there any damage on the alarm system? which sensors have been damaged?",
+    "7.- Could you please tell me which path you think intruders took aroun your installation?",
+  ];
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const handleNextClick = () => {
+    setCurrentQuestionIndex((currentQuestionIndex + 1) % questions.length);
+  };
+
+  const handlePrevClick = () => {
+    setCurrentQuestionIndex(
+      (currentQuestionIndex - 1 + questions.length) % questions.length
+    );
+  };
+
   return (
     <div className="w-full flex flex-row h-full font-titillium">
       {/* Left Side Options banner */}
@@ -106,171 +130,201 @@ const RobberyScreen = () => {
         </div>
       </div>
       {/* Right Side */}
-      <div className="flex 4xl:flex-row flex-col ml-2.5 w-full ">
-        {/* Maintenance Cards */}
-        <div className="items-center flex flex-col h-full w-full justify-center">
-          <div className="h-max flex flex-col w-max">
-            <div className="items-center flex flex-col h-full w-full justify-center">
-              {/* top div */}
-              <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem]">
-                {/* Title */}
-                <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
-                  {language === "english" ? "Maintenances" : "Mantenimientos"}
-                </span>
-                {/* Subtitle */}
-                <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
-                  {language === "english"
-                    ? "Kindly ensure that all relevant information is obtained from the customer"
-                    : "Asegúrate de obtener todos la información del cliente :"}
-                </p>
-              </div>
-              {/* bottom div */}
-              <div className="h-[280px] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-between items-center w-[36rem]">
-                {/* Subtitle */}
-                <div className="justify-between flex flex-row m-2 px-3 w-full items-center">
-                  {language === "english"
-                    ? "Open maintenances or ticket"
-                    : "Abre el mantenimiento o aviso"}
-                  <div className="flex flex-row">
-                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-l-md p-0.5 px-1">
-                      {language === "english" ? "Type: " : "Tipo: "}
-                    </div>
+      <div className="w-full flex 4xl:flex-col flex-row justify-evenly">
+        {/* Key Questions Card */}
+        <div className="carousel-container w-full ">
+          <div className="carousel flex flex-row justify-center items-center h-[180px]">
+            <button
+              className="px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333]"
+              onClick={handlePrevClick}
+            >
+              Prev
+            </button>
+            <div className="question h-full w-[670px] p-2 flex flex-col items-center justify-center border-[1px] dark:border-[#333]">
+              <span class="font-semibold text-xl 4xl:text-2xl text-black dark:text-white pb-4">
+                {language === "english" ? "Questions" : "Preguntas"}
+              </span>
+              <span>{questions[currentQuestionIndex]}</span>
+            </div>
+            <button
+              className="px-4 h-full border-[1px] border-l-0 rounded-r-lg dark:border-[#333]"
+              onClick={handleNextClick}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+        <div className="flex 4xl:flex-row flex-col ml-2.5">
+          {/* Maintenance Cards */}
+          <div className="items-center flex flex-col h-full w-full justify-center">
+            <div className="h-max flex flex-col w-max">
+              <div className="items-center flex flex-col h-full w-full justify-center">
+                {/* top div */}
+                <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem]">
+                  {/* Title */}
+                  <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
+                    {language === "english" ? "Maintenances" : "Mantenimientos"}
+                  </span>
+                  {/* Subtitle */}
+                  <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
+                    {language === "english"
+                      ? "Kindly ensure that all relevant information is obtained from the customer"
+                      : "Asegúrate de obtener todos la información del cliente :"}
+                  </p>
+                </div>
+                {/* bottom div */}
+                <div className="h-[280px] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-between items-center w-[36rem]">
+                  {/* Subtitle */}
+                  <div className="justify-between flex flex-row m-2 px-3 w-full items-center">
+                    {language === "english"
+                      ? "Open maintenances or ticket"
+                      : "Abre el mantenimiento o aviso"}
+                    <div className="flex flex-row">
+                      <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-l-md p-0.5 px-1">
+                        {language === "english" ? "Type: " : "Tipo: "}
+                      </div>
 
-                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-none p-0.5 px-1">
-                      {selectedMaintenance && selectedMaintenance.type}
-                    </div>
-                    <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] rounded-r-md p-0.5 px-1">
-                      {selectedMaintenance && selectedMaintenance.subtype}
+                      <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] border-r-0 rounded-none p-0.5 px-1">
+                        {selectedMaintenance && selectedMaintenance.type}
+                      </div>
+                      <div className="shadow-none inner_card bg-[#f6f8fa] dark:border-[#333] border-[1px] rounded-r-md p-0.5 px-1">
+                        {selectedMaintenance && selectedMaintenance.subtype}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] m-2 p-3 border-dashed border border-[#30363d] rounded-md">
-                  {selectedMaintenance && selectedMaintenance.text}
-                </p>
-                {/* Button */}
-                <div>
-                  <ReactCanvasConfetti
-                    refConfetti={getInstance}
-                    style={canvasStyles}
-                  />
-                  <button
-                    onClick={fire}
-                    id="copyBtn"
-                    className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-[#ffffff73] bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all"
-                  >
-                    <TbCopy className="text-lg" />
-                    {language === "english" ? "Copy" : "Copiar"}
-                  </button>
+                  <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] m-2 p-3 border-dashed border border-[#30363d] rounded-md">
+                    {selectedMaintenance && selectedMaintenance.text}
+                  </p>
+                  {/* Button */}
+                  <div>
+                    <ReactCanvasConfetti
+                      refConfetti={getInstance}
+                      style={canvasStyles}
+                    />
+                    <button
+                      onClick={() => {
+                        fire();
+                        handleCopyClick();
+                      }}
+                      id="copyBtn"
+                      className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-[#ffffff73] bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all"
+                    >
+                      <TbCopy className="text-lg" />
+                      {language === "english" ? "Copy" : "Copiar"}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* Robbery Advices */}
-        <div className="items-center flex flex-col h-full w-full justify-center">
-          {/* "What to say" card */}
-          <div className="h-max flex flex-col w-max">
-            {/* top div */}
-            <div className="w-[36rem] inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
-              {/* Title */}
-              <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
-                {language === "english" ? "Important!" : "Importante!"}
-              </span>
-              {/* Subtitle */}
-              <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
-                {language === "english"
-                  ? "Before to start:"
-                  : "Antes de empezar:"}
-              </p>
-            </div>
-            {/* bottom div */}
-            <div className="h-[280px] w-[36rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
-              {/* title form wrapper */}
-              <div className="w-full flex flex-row items-center justify-around mt-0 4xl:mt-2.5 ">
-                <div className="flex flex-row items-center justify-center">
-                  <BsCheckCircleFill className="text-2xl text-green-600 dark:text-green-500" />
-                  <h2 className="ml-2 text-md text-black dark:text-white">
-                    {language === "english" ? "What to say" : "Que decir"}
-                  </h2>
-                </div>
-                <div className="flex flex-row items-center justify-center">
-                  <BsFillXCircleFill className="text-2xl text-red-600 dark:text-red-400" />
-                  <h2 className="ml-2 text-md text-black dark:text-white">
-                    {language === "english" ? "What to NO say" : "Que NO decir"}
-                  </h2>
-                </div>
+          {/* Robbery Advices */}
+          <div className="items-center flex flex-col h-full w-full justify-center">
+            {/* "What to say" card */}
+            <div className="h-max flex flex-col w-max">
+              {/* top div */}
+              <div className="w-[36rem] inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
+                {/* Title */}
+                <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
+                  {language === "english" ? "Important!" : "Importante!"}
+                </span>
+                {/* Subtitle */}
+                <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
+                  {language === "english"
+                    ? "Before to start:"
+                    : "Antes de empezar:"}
+                </p>
               </div>
-              {/* div form wrapper */}
-              <div className="mt-2 flex flex-row items-center justify-between font-titillium text-[500] font-light text-neutral-600 dark:text-neutral-400">
-                {/* What to say wrapper */}
-                <div className="h-full flex flex-col items-center justify-center basis-1/2">
-                  <ul className="dark:text-[#00b900] text-[#006000] flex flex-col gap-0 4xl:gap-1 justify-between items-center text-center">
-                    <li>
+              {/* bottom div */}
+              <div className="h-[280px] w-[36rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
+                {/* title form wrapper */}
+                <div className="w-full flex flex-row items-center justify-around mt-0 4xl:mt-2.5 ">
+                  <div className="flex flex-row items-center justify-center">
+                    <BsCheckCircleFill className="text-2xl text-green-600 dark:text-green-500" />
+                    <h2 className="ml-2 text-md text-black dark:text-white">
+                      {language === "english" ? "What to say" : "Que decir"}
+                    </h2>
+                  </div>
+                  <div className="flex flex-row items-center justify-center">
+                    <BsFillXCircleFill className="text-2xl text-red-600 dark:text-red-400" />
+                    <h2 className="ml-2 text-md text-black dark:text-white">
                       {language === "english"
-                        ? "Intrussion signals"
-                        : "Señales de intrusion"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Tamper Signals"
-                        : "Señales tamper"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Jamming Signals"
-                        : "Señales inhibición"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Power cuts"
-                        : "Cortes de corriente"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Central Low/Dead battery"
-                        : "Batería baja/agotada de Central"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "O/C Authenticated"
-                        : "O/C Controlados"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "What the customer can watch on his App"
-                        : "Lo que el cliente pueda ver en la App"}
-                    </li>
-                  </ul>
+                        ? "What to NO say"
+                        : "Que NO decir"}
+                    </h2>
+                  </div>
                 </div>
-                {/* What to NOT say wrapper */}
-                <div className="h-full flex flex-col items-center justify-center basis-1/2">
-                  <ul className="dark:text-[#ff2e2e] text-[#870000] flex flex-col gap-0 4xl:gap-1 justify-between items-center text-center">
-                    <li>
-                      {language === "english"
-                        ? "Missing Test"
-                        : "Fallos de comunicaciones"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Detectors' Low/Dead battery"
-                        : "Batería baja/agotada detectores"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Informative signs in mustard"
-                        : "Señales informativas en mostaza"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Pending maintenance"
-                        : "Mantenimientos pendientes"}
-                    </li>
-                    <li>
-                      {language === "english"
-                        ? "Comlogs that differ from what is stated in the theft report"
-                        : "Comlogs que difieran con lo indicado en el informe de robo"}
-                    </li>
-                  </ul>
+                {/* div form wrapper */}
+                <div className="mt-2 flex flex-row items-center justify-between font-titillium text-[500] font-light text-neutral-600 dark:text-neutral-400">
+                  {/* What to say wrapper */}
+                  <div className="h-full flex flex-col items-center justify-center basis-1/2">
+                    <ul className="dark:text-[#00b900] text-[#006000] flex flex-col gap-0 4xl:gap-1 justify-between items-center text-center">
+                      <li>
+                        {language === "english"
+                          ? "Intrussion signals"
+                          : "Señales de intrusion"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Tamper Signals"
+                          : "Señales tamper"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Jamming Signals"
+                          : "Señales inhibición"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Power cuts"
+                          : "Cortes de corriente"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Central Low/Dead battery"
+                          : "Batería baja/agotada de Central"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "O/C Authenticated"
+                          : "O/C Controlados"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "What the customer can watch on his App"
+                          : "Lo que el cliente pueda ver en la App"}
+                      </li>
+                    </ul>
+                  </div>
+                  {/* What to NOT say wrapper */}
+                  <div className="h-full flex flex-col items-center justify-center basis-1/2">
+                    <ul className="dark:text-[#ff2e2e] text-[#870000] flex flex-col gap-0 4xl:gap-1 justify-between items-center text-center">
+                      <li>
+                        {language === "english"
+                          ? "Missing Test"
+                          : "Fallos de comunicaciones"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Detectors' Low/Dead battery"
+                          : "Batería baja/agotada detectores"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Informative signs in mustard"
+                          : "Señales informativas en mostaza"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Pending maintenance"
+                          : "Mantenimientos pendientes"}
+                      </li>
+                      <li>
+                        {language === "english"
+                          ? "Comlogs that differ from what is stated in the theft report"
+                          : "Comlogs que difieran con lo indicado en el informe de robo"}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
