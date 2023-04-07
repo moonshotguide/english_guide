@@ -2,6 +2,7 @@ import React, { useContext, useCallback, useRef, useState } from "react";
 import { LanguageContext } from "../components/context/LanguageContext";
 import { BsCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
 import { MdArrowForwardIos } from "react-icons/md";
+import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri"
 import { TbCopy } from "react-icons/tb";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import { maintenances } from "../constants/maintenances";
@@ -122,7 +123,7 @@ const RobberyScreen = () => {
               >
                 <MdArrowForwardIos />
                 <div className="w-full flex flex-row justify-start">
-                  <h4 className="ml-3 mr-1 my-4">{item.reason}</h4>
+                  <h4 className="ml-3 mr-1 my-4">{language === "english" ? item.reason.english : item.reason.español}</h4>
                 </div>
               </button>
             ))}
@@ -135,21 +136,23 @@ const RobberyScreen = () => {
         <div className="carousel-container w-full ">
           <div className="carousel flex flex-row justify-center items-center h-[180px]">
             <button
-              className="px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333]"
+              className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333]"
               onClick={handlePrevClick}
             >
+              <RiArrowLeftSFill/>
               Prev
             </button>
-            <div className="question h-full w-[670px] p-2 flex flex-col items-center justify-center border-[1px] dark:border-[#333]">
-              <span class="font-semibold text-xl 4xl:text-2xl text-black dark:text-white pb-4">
+            <div className="inner_card dark:bg-black question h-full w-[670px] p-2 flex flex-col items-center justify-center border-[1px] dark:border-[#333]">
+              <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white pb-4">
                 {language === "english" ? "Questions" : "Preguntas"}
               </span>
               <span>{questions[currentQuestionIndex]}</span>
             </div>
             <button
-              className="px-4 h-full border-[1px] border-l-0 rounded-r-lg dark:border-[#333]"
+              className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-l-0 rounded-r-lg dark:border-[#333]"
               onClick={handleNextClick}
             >
+              <RiArrowRightSFill/>
               Next
             </button>
           </div>
