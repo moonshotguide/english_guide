@@ -83,13 +83,34 @@ const RobberyScreen = () => {
 
   // Slider Function
   const questions = [
-    "1.- Are you OK? Have you suffered any harm?",
-    "2.- Should we inform the authorities about the intrusion or you already informed them about it?",
-    "3.- Did the forensic police has already been there? Do they plan to go?",
-    "4.- Around what time do you think the intrussion took place?",
-    "5.- Did they break a window or door? Did they Get in through the roof?",
-    "6.- Is there any damage on the alarm system? which sensors have been damaged?",
-    "7.- Could you please tell me which path you think intruders took aroun your installation?",
+    {
+      english : "1.- Are you OK? Have you suffered any harm?",
+      español : "1.- ¿Se encuentra bien?. ¿Ha sufrido algún daño?"
+    },
+    {
+      english : "2.- Should we inform the authorities about the intrusion or you already informed them about it?",
+      español : "2.- ¿Debemos informar a las autoridades sobre la intrusion o ya han sido avisados por usted?"
+    },
+    {
+      english : "3.- Did the forensic police has already been there? Do they plan to go?",
+      español : "3.- ¿Ha acudido la científica?. ¿Le han dicho si van a acudir?"
+    },
+    {
+      english : "4.- Around what time do you think the intrussion took place?",
+      español : "4.- ¿Sobre qué momento calcula que se produjo la intrusión?"
+    },
+    {
+      english : "5.- Did they break a window or door? Did they get in through the roof?",
+      español : "5.- ¿Rompieron alguna puerta o ventana?. ¿Accedieron a través del tejado?"
+    },
+    {
+      english : "6.- Is there any damage on the alarm system? which sensors have been damaged?",
+      español : "6.- ¿Existe algún daño en su alarma?. ¿Que sensores se encuentran averiados?"
+    },
+    {
+      english : "7.- Could you please tell me which path you think intruders took around your installation?",
+      español : "7.- ¿Podría decirnos que ruta tomaron los intrusos para acceder?"
+    }
   ];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
@@ -133,8 +154,8 @@ const RobberyScreen = () => {
       {/* Right Side */}
       <div className="w-full flex 4xl:flex-col flex-row justify-evenly">
         {/* Key Questions Card */}
-        <div className="carousel-container w-full ">
-          <div className="carousel flex flex-row justify-center items-center h-[180px]">
+        <div className="carousel-container 4xl:w-full w-max">
+          <div className="carousel flex flex-row 4xl:flex-row 4xl justify-center items-center 4xl:h-[180px] h-full">
             <button
               className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333]"
               onClick={handlePrevClick}
