@@ -2,16 +2,24 @@ import React, { useContext, useCallback, useRef, useState } from "react";
 import { LanguageContext } from "../components/context/LanguageContext";
 import { BsCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
 import { MdArrowForwardIos } from "react-icons/md";
-import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri"
+import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri";
 import { TbCopy } from "react-icons/tb";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import { maintenances } from "../constants/maintenances";
 
 const RobberyScreen = () => {
+  const { language } = useContext(LanguageContext);
+  //Gathering data from maintenances using context
+  // Find in the object the array which has 'title' in  "english"
+  const maintenance = maintenances.find(
+    (m) => m.title.english === "Burglared Maintenances"
+  );
+  // Find in the object the array 'encoding' which has 'reason' in  "english"
+  // const reason = maintenance.encoding.find((e) => e.reason.english);
+
   const [selectedMaintenance, setSelectedMaintenance] = useState(
     maintenances[0].encoding.find((item) => item.subtype === "501")
   );
-
   const handleClick = (key) => {
     setSelectedMaintenance(maintenances[0].encoding[key]);
   };
@@ -20,8 +28,6 @@ const RobberyScreen = () => {
   const handleCopyClick = () => {
     navigator.clipboard.writeText(selectedMaintenance.text);
   };
-
-  const { language } = useContext(LanguageContext);
 
   // Fire Function
   const canvasStyles = {
@@ -33,13 +39,10 @@ const RobberyScreen = () => {
     left: 0,
     zIndex: -10,
   };
-
   const refAnimationInstance = useRef(null);
-
   const getInstance = useCallback((instance) => {
     refAnimationInstance.current = instance;
   }, []);
-
   const makeShot = useCallback((particleRatio, opts) => {
     refAnimationInstance.current &&
       refAnimationInstance.current({
@@ -48,7 +51,6 @@ const RobberyScreen = () => {
         particleCount: Math.floor(280 * particleRatio),
       });
   }, []);
-
   const fire = useCallback(() => {
     makeShot(0.25, {
       spread: 26,
@@ -83,20 +85,48 @@ const RobberyScreen = () => {
 
   // Slider Function
   const questions = [
-    "1.- Are you OK? Have you suffered any harm?",
-    "2.- Should we inform the authorities about the intrusion or you already informed them about it?",
-    "3.- Did the forensic police has already been there? Do they plan to go?",
-    "4.- Around what time do you think the intrussion took place?",
-    "5.- Did they break a window or door? Did they Get in through the roof?",
-    "6.- Is there any damage on the alarm system? which sensors have been damaged?",
-    "7.- Could you please tell me which path you think intruders took aroun your installation?",
+    {
+      english: "1.- Are you OK? Have you suffered any harm?",
+      español: "1.- ¿Se encuentra bien?. ¿Ha sufrido algún daño?",
+    },
+    {
+      english:
+        "2.- Should we inform the authorities about the intrusion or you already informed them about it?",
+      español:
+        "2.- ¿Debemos informar a las autoridades sobre la intrusion o ya han sido avisados por usted?",
+    },
+    {
+      english:
+        "3.- Did the forensic police has already been there? Do they plan to go?",
+      español: "3.- ¿Ha acudido la científica?. ¿Le han dicho si van a acudir?",
+    },
+    {
+      english: "4.- Around what time do you think the intrussion took place?",
+      español: "4.- ¿Sobre qué momento calcula que se produjo la intrusión?",
+    },
+    {
+      english:
+        "5.- Did they break a window or door? Did they get in through the roof?",
+      español:
+        "5.- ¿Rompieron alguna puerta o ventana?. ¿Accedieron a través del tejado?",
+    },
+    {
+      english:
+        "6.- Is there any damage on the alarm system? which sensors have been damaged?",
+      español:
+        "6.- ¿Existe algún daño en su alarma?. ¿Que sensores se encuentran averiados?",
+    },
+    {
+      english:
+        "7.- Could you please tell me which path you think intruders took around your installation?",
+      español:
+        "7.- ¿Podría decirnos que ruta tomaron los intrusos para acceder?",
+    },
   ];
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const handleNextClick = () => {
     setCurrentQuestionIndex((currentQuestionIndex + 1) % questions.length);
   };
-
   const handlePrevClick = () => {
     setCurrentQuestionIndex(
       (currentQuestionIndex - 1 + questions.length) % questions.length
@@ -106,24 +136,28 @@ const RobberyScreen = () => {
   return (
     <div className="w-full flex flex-row h-full font-titillium">
       {/* Left Side Options banner */}
-      <div className="hscreen font-titillium">
-        <div className="rounded-md dark:bg-black py-0 px-2 flex flex-col w-max h-full items-center text-black dark:text-white justify-center mr-3">
+      <div className="hscreen font-titillium z-10">
+        <div className="rounded-md py-0 px-2 flex flex-col w-max h-full items-center text-black dark:text-white justify-center mr-3">
           <h4 className="my-6 font-bold">
             {language === "english"
-              ? "Burglary maintenances"
-              : "Mantenimientos por robos"}
+              ? maintenance.title.english
+              : maintenance.title.español}
           </h4>
           {/* Buttons */}
           <div className="divide-y divide-[#00000030] dark:divide-[#333] text-sm 4xl:text-base font-light tracking-wider ">
             {maintenances[0].encoding.map((item, index) => (
               <button
                 key={index}
-                className="w-[220px] dark:active:text-[#00d0ff] active:text-[#0072d3] active:font-bold hover:bg-[#8181812e] hover:transform hover:scale-106 w-[210px] flex flex-row items-center cursor-pointer border-t border-[#00000030] dark:border-[#333]"
+                className="w-[220px] dark:active:text-[#00d0ff] active:text-[#0072d3] active:font-bold hover:bg-[#8181812e] hover:transform hover:scale-106 flex flex-row items-center cursor-pointer border-t border-[#00000030] dark:border-[#333]"
                 onClick={() => handleClick(index)}
               >
                 <MdArrowForwardIos />
                 <div className="w-full flex flex-row justify-start">
-                  <h4 className="ml-3 mr-1 my-4">{language === "english" ? item.reason.english : item.reason.español}</h4>
+                  <h4 className="ml-3 mr-1 my-4">
+                    {language === "english"
+                      ? item.reason.english
+                      : item.reason.español}
+                  </h4>
                 </div>
               </button>
             ))}
@@ -131,54 +165,118 @@ const RobberyScreen = () => {
         </div>
       </div>
       {/* Right Side */}
-      <div className="w-full flex 4xl:flex-col flex-row justify-evenly">
+      <div className="w-full flex 4xl:flex-col flex-row-reverse justify-evenly">
+        {/* Green Top Patron */}
+        <div class="absolute inset-0 z-0 mx-0 max-w-none overflow-hidden">
+          <div class="absolute left-1/2 top-0 ml-[-38rem] h-[25rem] w-[81.25rem] dark:[mask-image:linear-gradient(white,transparent)]">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#36b49f] to-[#DBFF75] opacity-40 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] dark:from-[#36b49f]/30 dark:to-[#DBFF75]/30 dark:opacity-100">
+              <svg
+                aria-hidden="true"
+                class="absolute inset-x-0 inset-y-[-50%] h-[200%] w-full skew-y-[-18deg] fill-black/40 stroke-black/50 mix-blend-overlay dark:fill-white/2.5 dark:stroke-white/5"
+              >
+                <defs>
+                  <pattern
+                    id=":R11d6:"
+                    width="72"
+                    height="56"
+                    patternUnits="userSpaceOnUse"
+                    x="-12"
+                    y="4"
+                  >
+                    <path d="M.5 56V.5H72" fill="none"></path>
+                  </pattern>
+                </defs>
+                <rect
+                  width="100%"
+                  height="100%"
+                  stroke-width="0"
+                  fill="url(#:R11d6:)"
+                ></rect>
+                <svg x="-12" y="4" class="overflow-visible">
+                  <rect
+                    stroke-width="0"
+                    width="73"
+                    height="57"
+                    x="288"
+                    y="168"
+                  ></rect>
+                  <rect
+                    stroke-width="0"
+                    width="73"
+                    height="57"
+                    x="144"
+                    y="56"
+                  ></rect>
+                  <rect
+                    stroke-width="0"
+                    width="73"
+                    height="57"
+                    x="504"
+                    y="168"
+                  ></rect>
+                  <rect
+                    stroke-width="0"
+                    width="73"
+                    height="57"
+                    x="720"
+                    y="336"
+                  ></rect>
+                </svg>
+              </svg>
+            </div>
+          </div>
+        </div>
         {/* Key Questions Card */}
-        <div className="carousel-container w-full ">
-          <div className="carousel flex flex-row justify-center items-center h-[180px]">
+        <div className="carousel-container 4xl:w-full w-max">
+          <div className="carousel flex flex-row 4xl:flex-row 4xl justify-center items-center 4xl:h-[180px] h-full">
             <button
-              className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333]"
+              className="dark:bg-sky-900 dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-r-0 rounded-l-lg dark:border-[#333] maxminiteams:px-3 maxminiteams:py-0"
               onClick={handlePrevClick}
             >
-              <RiArrowLeftSFill/>
+              <RiArrowLeftSFill />
               Prev
             </button>
-            <div className="inner_card dark:bg-black question h-full w-[670px] p-2 flex flex-col items-center justify-center border-[1px] dark:border-[#333]">
+            <div className="inner_card dark:bg-black question h-full w-[800px] maxminiteams:w-[15rem] max3xl:w-[30rem] p-2 flex flex-col items-center justify-center border-[1px] dark:border-[#333] text-center">
               <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white pb-4">
                 {language === "english" ? "Questions" : "Preguntas"}
               </span>
-              <span>{questions[currentQuestionIndex]}</span>
+              <span className="maxminiteams:text-[0.9rem]">
+                {language === "english"
+                  ? questions[currentQuestionIndex].english
+                  : questions[currentQuestionIndex].español}
+              </span>
             </div>
             <button
-              className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-l-0 rounded-r-lg dark:border-[#333]"
+              className="dark:bg-sky-900 dark:text-black dark:hover:bg-black dark:hover:text-white bg-black text-white hover:bg-white hover:text-black font-bold text-center uppercase align-middle cursor-pointer leading-normal text-sm transition-all inner_card px-4 h-full border-[1px] border-l-0 rounded-r-lg dark:border-[#333] maxminiteams:px-3 maxminiteams:py-0"
               onClick={handleNextClick}
             >
-              <RiArrowRightSFill/>
+              <RiArrowRightSFill />
               Next
             </button>
           </div>
         </div>
         <div className="flex 4xl:flex-row flex-col ml-2.5">
           {/* Maintenance Cards */}
-          <div className="items-center flex flex-col h-full w-full justify-center">
+          <div className="items-center flex flex-col h-full w-full 4xl:justify-center justify-start">
             <div className="h-max flex flex-col w-max">
               <div className="items-center flex flex-col h-full w-full justify-center">
                 {/* top div */}
-                <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem]">
+                <div className="dark:text-white inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center w-[36rem] maxminiteams:w-[30rem]">
                   {/* Title */}
-                  <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
+                  <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white maxminiteams:text-[1.1rem]">
                     {language === "english" ? "Maintenances" : "Mantenimientos"}
                   </span>
                   {/* Subtitle */}
-                  <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
+                  <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white maxminiteams:text-[0.85rem]">
                     {language === "english"
                       ? "Kindly ensure that all relevant information is obtained from the customer"
                       : "Asegúrate de obtener todos la información del cliente :"}
                   </p>
                 </div>
                 {/* bottom div */}
-                <div className="h-[280px] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-between items-center w-[36rem]">
+                <div className="h-[285px] max3xl:h-[15rem] maxminiteams:h-[15.5rem] maxminiteams:w-[30rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-between items-center w-[36rem]">
                   {/* Subtitle */}
-                  <div className="justify-between flex flex-row m-2 px-3 w-full items-center">
+                  <div className="justify-between flex flex-row m-2 px-3 w-full items-center maxminiteams:text-[0.85rem]">
                     {language === "english"
                       ? "Open maintenances or ticket"
                       : "Abre el mantenimiento o aviso"}
@@ -195,50 +293,58 @@ const RobberyScreen = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] m-2 p-3 border-dashed border border-[#30363d] rounded-md">
+                  {/* Maintenance Text */}
+                  <p className="dark:text-[#7e7e7e] text-[#606060] text-[0.85rem] max3xl:text-[0.725rem] maxminiteams:text-[0.75rem] maxminiteams:m-1 maxminiteams:p-1.5 m-2 p-3 max3xl:p-2 border-dashed border border-[#30363d] rounded-md">
                     {selectedMaintenance && selectedMaintenance.text}
                   </p>
-                  {/* Button */}
-                  <div>
-                    <ReactCanvasConfetti
-                      refConfetti={getInstance}
-                      style={canvasStyles}
-                    />
-                    <button
-                      onClick={() => {
-                        fire();
-                        handleCopyClick();
-                      }}
-                      id="copyBtn"
-                      className="dark:bg-white dark:text-black dark:hover:bg-black dark:hover:text-white dark:hover:border-[#ffffff73] bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all"
-                    >
-                      <TbCopy className="text-lg" />
-                      {language === "english" ? "Copy" : "Copiar"}
-                    </button>
+                  <div className="flex flex-col items-center">
+                    <p className="text-xs">
+                      {language === "english"
+                        ? "Press the button to copy"
+                        : "Pulsa para copiar el texto"}
+                    </p>
+                    {/* Button */}
+                    <div>
+                      <ReactCanvasConfetti
+                        refConfetti={getInstance}
+                        style={canvasStyles}
+                      />
+                      <button
+                        onClick={() => {
+                          fire();
+                          handleCopyClick();
+                        }}
+                        id="copyBtn"
+                        className="dark:bg-transparent dark:text-purple-500 dark:hover:bg-purple-500 dark:hover:text-white dark:border-purple-500 dark:hover:border-purple-500 bg-black text-white hover:bg-white hover:text-black hover:border-black border inline-flex font-bold text-center uppercase align-middle px-4 py-2 rounded-lg cursor-pointer leading-normal text-sm transition-all maxminiteams:text-[0.85rem] maxminiteams:py-1 maxminiteams:px-9 max3xl:text-[0.85rem] max3xl:py-1.5 max3xl:px-9"
+                      >
+                        <TbCopy className="text-lg" />
+                        {language === "english" ? "Copy" : "Copiar"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           {/* Robbery Advices */}
-          <div className="items-center flex flex-col h-full w-full justify-center">
+          <div className="items-center flex flex-col h-full w-full 4xl:justify-center justify-end">
             {/* "What to say" card */}
             <div className="h-max flex flex-col w-max">
               {/* top div */}
-              <div className="w-[36rem] inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center">
+              <div className="w-[36rem] inner_card bg-[#f6f8fa] dark:border-[#333] p-2 border-[1px] border-b-0 rounded-t-lg flex flex-col justify-center items-center maxminiteams:w-[30rem]">
                 {/* Title */}
-                <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white">
+                <span className="font-semibold text-xl 4xl:text-2xl text-black dark:text-white maxminiteams:text-[1.1rem]">
                   {language === "english" ? "Important!" : "Importante!"}
                 </span>
                 {/* Subtitle */}
-                <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white">
+                <p className="mt-0 4xl:mt-1 text-base font-light text-black dark:text-white maxminiteams:text-[0.85rem]">
                   {language === "english"
                     ? "Before to start:"
                     : "Antes de empezar:"}
                 </p>
               </div>
               {/* bottom div */}
-              <div className="h-[280px] w-[36rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
+              <div className="h-[285px] max3xl:h-fill_available max3xl:text-[0.95rem] w-[36rem] maxminiteams:w-[30rem] maxminiteams:h-[13rem] maxminiteams:text-[0.8rem] inner_card dark:bg-black dark:border-[#333] p-2 rounded-b-lg flex flex-col justify-center items-center">
                 {/* title form wrapper */}
                 <div className="w-full flex flex-row items-center justify-around mt-0 4xl:mt-2.5 ">
                   <div className="flex flex-row items-center justify-center">
