@@ -40,15 +40,15 @@ const CameraDB = ({ cameraData }) => {
   console.log(cameraData);
 
   //Maintenance Buttons
-  const [selectedMaintenance, setSelectedMaintenance] = useState(null);
+  const [selectedMaintenance, setSelectedMaintenance] = useState("");
   useEffect(() => {
-    if (cameraData && cameraData.length > 0) {
+    if (cameraData && cameraData.encoding) {
       setSelectedMaintenance(
-        cameraData.encoding.find((item) => item.subtype === "501")
+        cameraData.encoding.find((item) => item.subtype === "501") || cameraData.encoding[0]
       );
     }
   }, [cameraData]);
-
+  
   if (!cameraData || cameraData.length === 0) {
     return <div>Loading...</div>;
   }
@@ -108,7 +108,7 @@ const CameraDB = ({ cameraData }) => {
             </Text>
           <Spacer h={1} />
           <Text p>
-            <ol className="w-fit h-full flex flex-col justify-center items-stretch gap-1 text-sm max3xl:text-[0.78rem] max3xl:gap-0.5">
+            <ol className="w-fit h-full flex flex-col justify-center items-stretch gap-0.5 text-sm max3xl:text-[0.78rem] max3xl:gap-0.5">
               {cameraData?.icon ? (
                 cameraData?.features.map((Camfeature, index) => (
                   <li
@@ -225,17 +225,16 @@ const CameraDB = ({ cameraData }) => {
               {language === "english" ? "Copy the text and open the corresponding maintenance." : "Copie el texto y abra el correspondiente mantenimiento"}
             </Text>
           </Card.Content>
-          <Card.Content height="calc(19.5rem - 93px)">
+          <Card.Content height="calc(19.5rem - 94px)">
             <ButtonGroup
               vertical
               scale={0.75}
               type="success"
-              width="100%"
+              width="17.35rem"
               style={{
                 background: theme === "light" ? "#fafafa" : "black",
                 color: theme === "light" ? "black" : "white",
                 border: theme === "light" ? "1px solid #eaeaea" : "1px solid #333",
-                width: "100%"
               }}>
               {cameraData?.encoding.map((item, index) => (
                 <Button

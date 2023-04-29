@@ -19,8 +19,10 @@ const CamerasScreen = () => {
     );
   };
 
+  
+  
   // Camera Model Button
-  const [selectedCamara, setSelectedCamara] = useState(null);
+  const [selectedCamara, setSelectedCamara] = useState(cameras[0].models[0].submodels[0]);
   const handleSubmodelClick = (submodel) => {
     console.log(submodel);
     setSelectedCamara(submodel);
@@ -140,7 +142,6 @@ const CamerasScreen = () => {
             </div>
           </div>
         </div>
-        {/* cameras={selectedCamara.submodel} */}
         <CameraDB cameraData={selectedCamara} />
       </div>
     </div>
