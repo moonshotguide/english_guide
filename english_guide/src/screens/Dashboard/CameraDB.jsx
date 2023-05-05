@@ -62,8 +62,8 @@ const CameraDB = ({ cameraData }) => {
   };
 
   return (
-    <div className="flex flex-col w-full pr-5 z-100">
-      <div className="topside flex flex-row items-center w-[65%] h-[50%] justify-between gap-1">
+    <div className="flex flex-col justify-start w-[60%] pr-5 z-100">
+      <div className="topside flex flex-row items-center w-full h-[50%] justify-between gap-1">
         {/* Image Camera */}
         <div className="rounded-lg">
           {cameraData?.icon ? (
@@ -129,7 +129,7 @@ const CameraDB = ({ cameraData }) => {
           </Text>
         </Card>
       </div>
-      <div className="bottomside flex flex-row items-center w-[65%] h-[50%] justify-between gap-1">
+      <div className="bottomside flex flex-row items-center w-full h-[50%] justify-between gap-1">
         {/* Maintenances Camera Card */}
         <Card
           shadow
@@ -234,7 +234,7 @@ const CameraDB = ({ cameraData }) => {
             <ButtonGroup
               vertical
               scale={0.75}
-              type="success"
+              type="default"
               width="100%"
               style={{
                 background: theme === "light" ? "#fafafa" : "black",
@@ -245,6 +245,10 @@ const CameraDB = ({ cameraData }) => {
                 <Button
                   type="default"
                   key={index}
+                  style={{
+                    background: theme === "light" ? "black" : "white",
+                    color: theme === "light" ? "white" : "black"
+                  }}
                   onClick={() => handleClick(index)}
                 >
                   <Text h4>
